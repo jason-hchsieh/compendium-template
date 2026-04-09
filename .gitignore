@@ -7,5 +7,7 @@ Thumbs.db
 *.swo
 *~
 
-# Superpowers brainstorm sessions
+# Superpowers artifacts
 .superpowers/
+.worktree/
+docs/superpowers/

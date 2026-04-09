@@ -33,15 +33,10 @@ Both layers are plain markdown. `log.jsonl` records every operation. Every opera
 
 ## Quick Start
 
-```bash
-# Install into ./compendium (no network dependencies, all content embedded)
-bash install.sh
+1. Click **"Use this template"** on GitHub to create your own repo
+2. Clone it and open in your coding agent
 
-# Or pipe directly
-curl -fsSL https://raw.githubusercontent.com/jasonhch/compendium/main/install.sh | bash
-```
-
-Open the directory in your coding agent, then:
+Then:
 
 ```
 /status          # see the current state of the knowledge base

@@ -1,10 +1,10 @@
-# llm-wiki
+# compendium
 
 A coding-agent-driven personal knowledge management system combining GTD, PARA, and Karpathy's LLM Wiki pattern.
 
 ## What is this
 
-llm-wiki is a structured set of markdown files, conventions, and skill instructions that turns a coding agent (Claude Code, Cursor, etc.) into a personal knowledge base maintainer. You capture raw inputs; the agent ingests them into a living wiki it fully controls. The system enforces GTD's capture-clarify-organize-reflect-engage cycle on top of a PARA directory taxonomy, with the wiki layer growing automatically as new material arrives.
+Compendium is a structured set of markdown files, conventions, and skill instructions that turns a coding agent (Claude Code, Cursor, etc.) into a personal knowledge base maintainer. You capture raw inputs; the agent ingests them into a living wiki it fully controls. The system enforces GTD's capture-clarify-organize-reflect-engage cycle on top of a PARA directory taxonomy, with the wiki layer growing automatically as new material arrives.
 
 ## Architecture
 
@@ -65,7 +65,7 @@ Each operation reads its detailed instructions from `.skills/<operation>.md` bef
 ## Directory Structure
 
 ```
-llm-wiki/
+compendium/
 ├── CLAUDE.md                # System overview — loaded at every conversation start
 ├── .skills/                 # Per-operation instructions
 │   ├── capture.md

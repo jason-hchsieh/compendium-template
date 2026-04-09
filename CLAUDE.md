@@ -15,15 +15,15 @@ Personal knowledge management system: GTD + PARA + LPKD.
 
 ## Operations
 Read the corresponding skill file **before** executing any operation:
-- `/capture` → `.skills/capture.md`
-- `/ingest` → `.skills/ingest.md`
-- `/query` → `.skills/query.md`
-- `/review` → `.skills/review.md`
-- `/lint` → `.skills/lint.md`
-- `/status` → `.skills/status.md`
+- `/capture` → `.claude/skills/capture/SKILL.md`
+- `/ingest` → `.claude/skills/ingest/SKILL.md`
+- `/query` → `.claude/skills/query/SKILL.md`
+- `/review` → `.claude/skills/review/SKILL.md`
+- `/lint` → `.claude/skills/lint/SKILL.md`
+- `/status` → `.claude/skills/status/SKILL.md`
 
 ## Conventions
-Page formats, frontmatter spec, and templates → `.schema/`
+Page formats, frontmatter spec, and templates → `.claude/schema/`
 
 ## Git
 Every operation ends with a structured commit:

@@ -1,3 +1,7 @@
+---
+name: capture
+description: Quick, zero-friction input. Save any content into the inbox for later processing. Use when the user wants to capture a thought, article, URL, image, or any content.
+---
 # /capture
 
 Quick, zero-friction input. Save any content into the inbox for later processing.
@@ -20,7 +24,7 @@ Create `inbox/YYYY-MM-DD-HH-MM-<slug>.md` where:
 - Date/time is current UTC
 - Slug is a 2-4 word lowercase hyphenated summary of the content
 
-Write the file with frontmatter per `.schema/frontmatter.md` (capture format):
+Write the file with frontmatter per `.claude/schema/frontmatter.md` (capture format):
 ```yaml
 ---
 type: capture
@@ -42,7 +46,7 @@ For each attachment:
 
 ### Step 4: Ask about ingest
 Ask the user: "Captured. Ingest now or later?"
-- If "now": proceed to run `/ingest` on this file (read `.skills/ingest.md` first)
+- If "now": proceed to run `/ingest` on this file (read `.claude/skills/ingest/SKILL.md` first)
 - If "later" or no response: done
 
 ### Step 5: Log

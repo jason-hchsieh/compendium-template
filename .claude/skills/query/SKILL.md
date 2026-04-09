@@ -1,3 +1,7 @@
+---
+name: query
+description: Answer questions using the knowledge base. Searches the wiki index, reads relevant pages, and synthesizes answers with source citations. Use when the user asks a question about their knowledge base.
+---
 # /query
 
 Ask questions answered by the knowledge base.
@@ -26,7 +30,7 @@ Compose an answer that:
 ### Step 5: Decide whether to write back
 If the answer reveals a **new insight** worth preserving (a non-obvious connection, a novel comparison, a synthesis that doesn't exist yet):
 
-1. Create a new `wiki/syntheses/` page using `.schema/page-templates/synthesis.md`
+1. Create a new `wiki/syntheses/` page using `.claude/schema/page-templates/synthesis.md`
 2. Update cross-references on related pages
 3. Update `wiki/syntheses/_index.md` and `wiki/index.md`
 4. Append to `log.jsonl`:

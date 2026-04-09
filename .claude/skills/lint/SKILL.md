@@ -1,3 +1,7 @@
+---
+name: lint
+description: Health check the knowledge base. Finds contradictions, orphans, stale info, missing pages, and completed actions. Use when the user wants to maintain wiki quality.
+---
 # /lint
 
 Health check the knowledge base. Find and fix issues.

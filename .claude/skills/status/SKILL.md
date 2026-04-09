@@ -1,3 +1,7 @@
+---
+name: status
+description: Quick read-only dashboard showing inbox count, top actions, last review date, and knowledge base stats. Use when the user wants an overview.
+---
 # /status
 
 Quick read-only dashboard of the knowledge base state.

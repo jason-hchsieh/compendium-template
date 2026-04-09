@@ -1,3 +1,7 @@
+---
+name: review
+description: Generate weekly or monthly review reports. Analyzes log.jsonl, actions progress, and knowledge growth. Use when the user wants a periodic review.
+---
 # /review
 
 Run periodic reviews to reflect on progress and plan ahead.

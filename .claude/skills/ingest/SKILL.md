@@ -1,3 +1,7 @@
+---
+name: ingest
+description: Process inbox items into the knowledge base. Compiles raw inputs into wiki pages, extracts actions, classifies into PARA. Use when the user wants to process inbox items.
+---
 # /ingest
 
 Process inbox items into the knowledge base. This is the core "compilation" operation.
@@ -35,7 +39,7 @@ Decide the subdirectory (e.g., `resources/machine-learning/`). If the topic is n
 Scan for anything actionable: todos, commitments, intentions, things to follow up on.
 For each action found:
 1. Determine the type: `next` (do soon), `waiting` (blocked on someone/something), `someday` (maybe later)
-2. Add to the corresponding file in `wiki/actions/` using the format from `.schema/page-templates/action.md`
+2. Add to the corresponding file in `wiki/actions/` using the format from `.claude/schema/page-templates/action.md`
 3. Include source reference back to the wiki page or raw file
 
 #### 2d: Update knowledge network
@@ -44,11 +48,11 @@ Read `wiki/index.md` to understand the current knowledge landscape.
 For each key concept, entity, or insight in the content:
 1. **Check if a page exists** — search `_index.md` files for existing pages
 2. **If page exists** — update it with new information from this source. Add to Source Notes section. Update Key Points if the new source adds or contradicts. Add cross-references.
-3. **If page is new** — create it using the template from `.schema/page-templates/`. Fill in all sections.
+3. **If page is new** — create it using the template from `.claude/schema/page-templates/`. Fill in all sections.
 4. **If cross-source insight emerges** — create a `wiki/syntheses/` page connecting the dots
 
-Use templates from `.schema/page-templates/` for all new pages.
-Follow frontmatter spec from `.schema/frontmatter.md`.
+Use templates from `.claude/schema/page-templates/` for all new pages.
+Follow frontmatter spec from `.claude/schema/frontmatter.md`.
 
 Guideline: aim to touch ~10-15 pages per ingest, but let the content dictate scope. A simple bookmark might touch 2-3 pages. A dense research paper might touch 20+.
 

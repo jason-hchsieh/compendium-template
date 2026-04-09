@@ -1,7 +1,7 @@
 # Frontmatter Specification
 
 All `wiki/` pages (except `index.md` and `_index.md`) must include YAML frontmatter.
-Action pages (`wiki/actions/*.md`) use a reduced frontmatter — see `.schema/page-templates/action.md`.
+Action pages (`wiki/actions/*.md`) use a reduced frontmatter — see `.claude/schema/page-templates/action.md`.
 
 ## Required Fields
 

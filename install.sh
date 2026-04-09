@@ -77,8 +77,13 @@ mkdir -p \
   "$TARGET_DIR/wiki/actions" \
   "$TARGET_DIR/wiki/reviews/weekly" \
   "$TARGET_DIR/wiki/reviews/monthly" \
-  "$TARGET_DIR/.skills" \
-  "$TARGET_DIR/.schema/page-templates"
+  "$TARGET_DIR/.claude/skills/capture" \
+  "$TARGET_DIR/.claude/skills/ingest" \
+  "$TARGET_DIR/.claude/skills/query" \
+  "$TARGET_DIR/.claude/skills/review" \
+  "$TARGET_DIR/.claude/skills/lint" \
+  "$TARGET_DIR/.claude/skills/status" \
+  "$TARGET_DIR/.claude/schema/page-templates"
 
 # ---------------------------------------------------------------------------
 # 2. .gitkeep files for otherwise-empty directories
@@ -145,15 +150,15 @@ Personal knowledge management system: GTD + PARA + LPKD.
 
 ## Operations
 Read the corresponding skill file **before** executing any operation:
-- `/capture` → `.skills/capture.md`
-- `/ingest` → `.skills/ingest.md`
-- `/query` → `.skills/query.md`
-- `/review` → `.skills/review.md`
-- `/lint` → `.skills/lint.md`
-- `/status` → `.skills/status.md`
+- `/capture` → `.claude/skills/capture/SKILL.md`
+- `/ingest` → `.claude/skills/ingest/SKILL.md`
+- `/query` → `.claude/skills/query/SKILL.md`
+- `/review` → `.claude/skills/review/SKILL.md`
+- `/lint` → `.claude/skills/lint/SKILL.md`
+- `/status` → `.claude/skills/status/SKILL.md`
 
 ## Conventions
-Page formats, frontmatter spec, and templates → `.schema/`
+Page formats, frontmatter spec, and templates → `.claude/schema/`
 
 ## Git
 Every operation ends with a structured commit:
@@ -170,15 +175,15 @@ Stage only files changed by the operation. Do not use `git add -A`.
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 6. .schema/frontmatter.md
+# 6. .claude/schema/frontmatter.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".schema/frontmatter.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.schema/frontmatter.md"
+print_step "write" ".claude/schema/frontmatter.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/schema/frontmatter.md"
 # Frontmatter Specification
 
 All `wiki/` pages (except `index.md` and `_index.md`) must include YAML frontmatter.
-Action pages (`wiki/actions/*.md`) use a reduced frontmatter — see `.schema/page-templates/action.md`.
+Action pages (`wiki/actions/*.md`) use a reduced frontmatter — see `.claude/schema/page-templates/action.md`.
 
 ## Required Fields
 
@@ -231,11 +236,11 @@ attachments:
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 7. .schema/conventions.md
+# 7. .claude/schema/conventions.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".schema/conventions.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.schema/conventions.md"
+print_step "write" ".claude/schema/conventions.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/schema/conventions.md"
 # Conventions
 
 ## File Naming
@@ -315,11 +320,11 @@ Example:
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 8. .schema/page-templates/concept.md
+# 8. .claude/schema/page-templates/concept.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".schema/page-templates/concept.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.schema/page-templates/concept.md"
+print_step "write" ".claude/schema/page-templates/concept.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/schema/page-templates/concept.md"
 # Concept Page Template
 
 Use this template when creating a new `wiki/concepts/` page.
@@ -356,11 +361,11 @@ Key takeaways from this specific source.
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 9. .schema/page-templates/entity.md
+# 9. .claude/schema/page-templates/entity.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".schema/page-templates/entity.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.schema/page-templates/entity.md"
+print_step "write" ".claude/schema/page-templates/entity.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/schema/page-templates/entity.md"
 # Entity Page Template
 
 Use this template when creating a new `wiki/entities/` page.
@@ -398,11 +403,11 @@ Key takeaways from this specific source.
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 10. .schema/page-templates/synthesis.md
+# 10. .claude/schema/page-templates/synthesis.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".schema/page-templates/synthesis.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.schema/page-templates/synthesis.md"
+print_step "write" ".claude/schema/page-templates/synthesis.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/schema/page-templates/synthesis.md"
 # Synthesis Page Template
 
 Use this template when creating a new `wiki/syntheses/` page.
@@ -442,11 +447,11 @@ How this source contributed to the synthesis.
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 11. .schema/page-templates/action.md
+# 11. .claude/schema/page-templates/action.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".schema/page-templates/action.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.schema/page-templates/action.md"
+print_step "write" ".claude/schema/page-templates/action.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/schema/page-templates/action.md"
 # Action Page Template
 
 Use this template for GTD action list pages in `wiki/actions/`.
@@ -482,11 +487,15 @@ Completed items:
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 12. .skills/capture.md
+# 12. .claude/skills/capture/SKILL.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".skills/capture.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.skills/capture.md"
+print_step "write" ".claude/skills/capture/SKILL.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/skills/capture/SKILL.md"
+---
+name: capture
+description: Quick, zero-friction input. Save any content into the inbox for later processing. Use when the user wants to capture a thought, article, URL, image, or any content.
+---
 # /capture
 
 Quick, zero-friction input. Save any content into the inbox for later processing.
@@ -509,7 +518,7 @@ Create `inbox/YYYY-MM-DD-HH-MM-<slug>.md` where:
 - Date/time is current UTC
 - Slug is a 2-4 word lowercase hyphenated summary of the content
 
-Write the file with frontmatter per `.schema/frontmatter.md` (capture format):
+Write the file with frontmatter per `.claude/schema/frontmatter.md` (capture format):
 ```yaml
 ---
 type: capture
@@ -531,7 +540,7 @@ For each attachment:
 
 ### Step 4: Ask about ingest
 Ask the user: "Captured. Ingest now or later?"
-- If "now": proceed to run `/ingest` on this file (read `.skills/ingest.md` first)
+- If "now": proceed to run `/ingest` on this file (read `.claude/skills/ingest/SKILL.md` first)
 - If "later" or no response: done
 
 ### Step 5: Log
@@ -550,11 +559,15 @@ git commit -m "[capture] <slug title>
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 13. .skills/ingest.md
+# 13. .claude/skills/ingest/SKILL.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".skills/ingest.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.skills/ingest.md"
+print_step "write" ".claude/skills/ingest/SKILL.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/skills/ingest/SKILL.md"
+---
+name: ingest
+description: Process inbox items into the knowledge base. Compiles raw inputs into wiki pages, extracts actions, classifies into PARA. Use when the user wants to process inbox items.
+---
 # /ingest
 
 Process inbox items into the knowledge base. This is the core "compilation" operation.
@@ -592,7 +605,7 @@ Decide the subdirectory (e.g., `resources/machine-learning/`). If the topic is n
 Scan for anything actionable: todos, commitments, intentions, things to follow up on.
 For each action found:
 1. Determine the type: `next` (do soon), `waiting` (blocked on someone/something), `someday` (maybe later)
-2. Add to the corresponding file in `wiki/actions/` using the format from `.schema/page-templates/action.md`
+2. Add to the corresponding file in `wiki/actions/` using the format from `.claude/schema/page-templates/action.md`
 3. Include source reference back to the wiki page or raw file
 
 #### 2d: Update knowledge network
@@ -601,11 +614,11 @@ Read `wiki/index.md` to understand the current knowledge landscape.
 For each key concept, entity, or insight in the content:
 1. **Check if a page exists** — search `_index.md` files for existing pages
 2. **If page exists** — update it with new information from this source. Add to Source Notes section. Update Key Points if the new source adds or contradicts. Add cross-references.
-3. **If page is new** — create it using the template from `.schema/page-templates/`. Fill in all sections.
+3. **If page is new** — create it using the template from `.claude/schema/page-templates/`. Fill in all sections.
 4. **If cross-source insight emerges** — create a `wiki/syntheses/` page connecting the dots
 
-Use templates from `.schema/page-templates/` for all new pages.
-Follow frontmatter spec from `.schema/frontmatter.md`.
+Use templates from `.claude/schema/page-templates/` for all new pages.
+Follow frontmatter spec from `.claude/schema/frontmatter.md`.
 
 Guideline: aim to touch ~10-15 pages per ingest, but let the content dictate scope. A simple bookmark might touch 2-3 pages. A dense research paper might touch 20+.
 
@@ -651,11 +664,15 @@ After all items are processed, output:
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 14. .skills/query.md
+# 14. .claude/skills/query/SKILL.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".skills/query.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.skills/query.md"
+print_step "write" ".claude/skills/query/SKILL.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/skills/query/SKILL.md"
+---
+name: query
+description: Answer questions using the knowledge base. Searches the wiki index, reads relevant pages, and synthesizes answers with source citations. Use when the user asks a question about their knowledge base.
+---
 # /query
 
 Ask questions answered by the knowledge base.
@@ -684,7 +701,7 @@ Compose an answer that:
 ### Step 5: Decide whether to write back
 If the answer reveals a **new insight** worth preserving (a non-obvious connection, a novel comparison, a synthesis that doesn't exist yet):
 
-1. Create a new `wiki/syntheses/` page using `.schema/page-templates/synthesis.md`
+1. Create a new `wiki/syntheses/` page using `.claude/schema/page-templates/synthesis.md`
 2. Update cross-references on related pages
 3. Update `wiki/syntheses/_index.md` and `wiki/index.md`
 4. Append to `log.jsonl`:
@@ -704,11 +721,15 @@ If the answer is straightforward (just retrieving known information), skip the w
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 15. .skills/review.md
+# 15. .claude/skills/review/SKILL.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".skills/review.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.skills/review.md"
+print_step "write" ".claude/skills/review/SKILL.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/skills/review/SKILL.md"
+---
+name: review
+description: Generate weekly or monthly review reports. Analyzes log.jsonl, actions progress, and knowledge growth. Use when the user wants a periodic review.
+---
 # /review
 
 Run periodic reviews to reflect on progress and plan ahead.
@@ -825,11 +846,15 @@ git commit -m "[review] monthly YYYY-MM
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 16. .skills/lint.md
+# 16. .claude/skills/lint/SKILL.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".skills/lint.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.skills/lint.md"
+print_step "write" ".claude/skills/lint/SKILL.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/skills/lint/SKILL.md"
+---
+name: lint
+description: Health check the knowledge base. Finds contradictions, orphans, stale info, missing pages, and completed actions. Use when the user wants to maintain wiki quality.
+---
 # /lint
 
 Health check the knowledge base. Find and fix issues.
@@ -930,11 +955,15 @@ git commit -m "[lint] fix <summary>
 HEREDOC
 
 # ---------------------------------------------------------------------------
-# 17. .skills/status.md
+# 17. .claude/skills/status/SKILL.md
 # ---------------------------------------------------------------------------
 
-print_step "write" ".skills/status.md"
-cat << 'HEREDOC' > "$TARGET_DIR/.skills/status.md"
+print_step "write" ".claude/skills/status/SKILL.md"
+cat << 'HEREDOC' > "$TARGET_DIR/.claude/skills/status/SKILL.md"
+---
+name: status
+description: Quick read-only dashboard showing inbox count, top actions, last review date, and knowledge base stats. Use when the user wants an overview.
+---
 # /status
 
 Quick read-only dashboard of the knowledge base state.
@@ -1123,8 +1152,7 @@ git -C "$TARGET_DIR" add \
   CLAUDE.md \
   .gitignore \
   log.jsonl \
-  .schema/ \
-  .skills/ \
+  .claude/ \
   wiki/ \
   inbox/.gitkeep \
   inbox/attachments/.gitkeep \
@@ -1141,8 +1169,8 @@ git -C "$TARGET_DIR" \
   commit --quiet -m "[init] bootstrap compendium instance
 
 - created: CLAUDE.md, .gitignore, log.jsonl
-- created: .schema/ (frontmatter.md, conventions.md, page-templates/)
-- created: .skills/ (capture.md, ingest.md, query.md, review.md, lint.md, status.md)
+- created: .claude/schema/ (frontmatter.md, conventions.md, page-templates/)
+- created: .claude/skills/ (capture, ingest, query, review, lint, status)
 - created: wiki/ (index.md, concepts/, entities/, syntheses/, actions/, reviews/)
 - created: inbox/, raw/ directory scaffolding"
 
@@ -1161,8 +1189,8 @@ echo "  Directory layout:"
 echo "    inbox/          ← drop notes here (/capture)"
 echo "    raw/            ← PARA-organised source material"
 echo "    wiki/           ← LLM-managed knowledge network"
-echo "    .schema/        ← frontmatter spec, conventions, templates"
-echo "    .skills/        ← operation playbooks for the LLM"
+echo "    .claude/schema/ ← frontmatter spec, conventions, templates"
+echo "    .claude/skills/ ← operation playbooks for the LLM"
 echo "    log.jsonl       ← append-only operation log"
 echo ""
 echo "  Next steps:"

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # =============================================================================
-# install.sh — LLM Wiki Knowledge Management System
+# install.sh — Compendium Knowledge Management System
 # =============================================================================
 #
-# Creates a complete, self-contained llm-wiki instance from scratch.
+# Creates a complete, self-contained compendium instance from scratch.
 # All file content is embedded directly in this script — no network downloads.
 #
 # Usage:
-#   bash install.sh                  # installs to ./llm-wiki
+#   bash install.sh                  # installs to ./compendium
 #   bash install.sh ~/my-kb          # installs to ~/my-kb
-#   curl -fsSL https://raw.githubusercontent.com/USER/llm-wiki/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/jasonhch/compendium/main/install.sh | bash
 #   curl -fsSL ...install.sh | bash -s -- ~/my-knowledge-base
 #
 # =============================================================================
@@ -20,7 +20,7 @@ set -euo pipefail
 # Configuration
 # ---------------------------------------------------------------------------
 
-TARGET_DIR="${1:-./llm-wiki}"
+TARGET_DIR="${1:-./compendium}"
 
 # Resolve to absolute path
 TARGET_DIR="$(cd "$(dirname "$TARGET_DIR")" 2>/dev/null && pwd)/$(basename "$TARGET_DIR")" || {
@@ -55,7 +55,7 @@ print_header() {
 # Start
 # ---------------------------------------------------------------------------
 
-print_header "LLM Wiki — Installation"
+print_header "Compendium — Installation"
 echo "  Target: $TARGET_DIR"
 echo ""
 
@@ -1136,9 +1136,9 @@ git -C "$TARGET_DIR" add \
 print_step "git commit" "creating initial commit..."
 
 git -C "$TARGET_DIR" \
-  -c user.name="${GIT_AUTHOR_NAME:-llm-wiki}" \
-  -c user.email="${GIT_AUTHOR_EMAIL:-llm-wiki@localhost}" \
-  commit --quiet -m "[init] bootstrap llm-wiki instance
+  -c user.name="${GIT_AUTHOR_NAME:-compendium}" \
+  -c user.email="${GIT_AUTHOR_EMAIL:-compendium@localhost}" \
+  commit --quiet -m "[init] bootstrap compendium instance
 
 - created: CLAUDE.md, .gitignore, log.jsonl
 - created: .schema/ (frontmatter.md, conventions.md, page-templates/)
